@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>solver</groupId>
+  	<artifactId>solver</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	<packaging>pom</packaging>
+	
+	<modules>
+		<module>solver-calculation</module>
+		<module>solver-client</module>
+		<module>solver-common</module>
+		<module>solver-domain-partition</module>
+		<module>solver-facade</module>
+		<module>solver-input</module>
+		<module>solver-output</module>
+		<module>solver-problem</module>
+		<module>solver-result-view</module>
+		<module>solver-result-print</module>
+		<module>solver-slae-solver</module>
+		<module>solver-toolbox</module>
+	</modules>
+	
+	<name>solver</name>
+ 	<url>http://maven.apache.org</url>
+
+	<properties>
+    	
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	<version>${project.version}</version>
+    
+    	<!-- Version properties -->
+		<spring.version>4.1.0.RELEASE</spring.version>
+		<jackson.version>2.6.2</jackson.version>
+		
+	</properties>
+	
+	<dependencyManagement>
+	  <dependencies>
+	  	<dependency>
+		  	<groupId>solver</groupId>
+		  	<artifactId>solver-calculation</artifactId>
+		  	<version>${version}</version>
+		</dependency>
+	  	<dependency>
+		  	<groupId>solver</groupId>
+		  	<artifactId>solver-client</artifactId>
+		  	<version>${version}</version>
+		</dependency>
+	  	<dependency>
+		  	<groupId>solver</groupId>
+		  	<artifactId>solver-common</artifactId>
+		  	<version>${version}</version>
+		</dependency>
+		<dependency>
+		  	<groupId>solver</groupId>
+		  	<artifactId>solver-domain-partition</artifactId>
+		  	<version>${version}</version>
+		</dependency>
+	  	<dependency>
+		  	<groupId>solver</groupId>
+		  	<artifactId>solver-facade</artifactId>
+		  	<version>${version}</version>
+		</dependency>
+	  	<dependency>
+	  		<groupId>solver</groupId>
+	  		<artifactId>solver-input</artifactId>
+	  		<version>${version}</version>
+	  	</dependency>
+	  	<dependency>
+		  	<groupId>solver</groupId>
+		  	<artifactId>solver-output</artifactId>
+		  	<version>${version}</version>
+		</dependency>
+	  	<dependency>
+		  	<groupId>solver</groupId>
+		  	<artifactId>solver-problem</artifactId>
+		  	<version>${version}</version>
+		</dependency>
+		<dependency>
+		  	<groupId>solver</groupId>
+		  	<artifactId>solver-result-print</artifactId>
+		  	<version>${version}</version>
+		</dependency>
+		<dependency>
+		  	<groupId>solver</groupId>
+		  	<artifactId>solver-result-view</artifactId>
+		  	<version>${version}</version>
+		</dependency>
+		<dependency>
+		  	<groupId>solver</groupId>
+		  	<artifactId>solver-slae-solver</artifactId>
+		  	<version>${version}</version>
+		</dependency>
+		<dependency>
+		  	<groupId>solver</groupId>
+		  	<artifactId>solver-toolbox</artifactId>
+		  	<version>${version}</version>
+		</dependency>
+	  </dependencies>
+	</dependencyManagement>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+    	<plugins>
+	      	<plugin>
+	        	<groupId>org.apache.maven.plugins</groupId>
+	        	<artifactId>maven-compiler-plugin</artifactId>
+	        	<version>3.1</version>
+	        	<configuration>
+	          		<source>1.8</source>
+	          		<target>1.8</target>
+	        	</configuration>
+	      	</plugin>
+    	</plugins>
+	</build>
+	
+</project>

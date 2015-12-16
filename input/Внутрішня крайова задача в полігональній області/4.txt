@@ -1,0 +1,14 @@
+{
+	"a11": 1,
+	"a22": 1,
+	"d": 0,
+	"f": 10,
+	"boundaries": [
+		{"p1": {"x":-3, "y":0}, "p2": {"x":3, "y":0}, "condition": "Dirichlet", "c": 0},
+		{"p1": {"x":3, "y":0}, "p2": {"x":0, "y":3}, "condition": "Dirichlet", "c": 0},
+		{"p1": {"x":0, "y":3}, "p2": {"x":-3, "y":0}, "condition": "Dirichlet", "c": 0}
+	],
+	"options": {
+		"zoom": 20
+	}
+}

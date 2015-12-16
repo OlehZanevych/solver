@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>solver</groupId>
+    <artifactId>solver</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  
+  <artifactId>solver-result-view</artifactId>
+  <name>solver-result-view</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+		<groupId>solver</groupId>
+		<artifactId>solver-output</artifactId>
+	</dependency>
+	<dependency>
+        <groupId>com.mathworks.toolbox</groupId>
+        <artifactId>javabuilder</artifactId>
+        <version>2015a</version>
+        <scope>system</scope>
+    	<systemPath>${basedir}/../lib/matlab/system/javabuilder.jar</systemPath>
+    </dependency>
+    <dependency>
+        <groupId>org.solver.matlab</groupId>
+        <artifactId>graph</artifactId>
+        <version>1.0</version>
+        <scope>system</scope>
+    	<systemPath>${basedir}/../lib/matlab/result/view/graph.jar</systemPath>
+    </dependency>
+  </dependencies>
+  
+</project>
