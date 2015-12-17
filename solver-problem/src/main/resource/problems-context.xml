@@ -6,6 +6,11 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
 	default-autowire="byName">
 	
+	<bean id="innerPolygonInitialBoundaryProblem" class="org.solver.problem.innerpolygoninitialboundaryproblem.InnerPolygonInitialBoundaryProblem">
+		<property name="innerPolygonBoundaryProblemApproximation" ref="innerPolygonBoundaryProblemLinearTriangularApproximation" />
+		<property name="polygonTriangulation" ref="rectangularPolygonTriangulation" />
+	</bean>
+	
 	<bean id="innerPolygonBoundaryProblem" class="org.solver.problem.innerpolygonboundaryproblem.InnerPolygonBoundaryProblem">
 		<property name="innerPolygonBoundaryProblemApproximation" ref="innerPolygonBoundaryProblemLinearTriangularApproximation" />
 		<property name="polygonTriangulation" ref="rectangularPolygonTriangulation" />

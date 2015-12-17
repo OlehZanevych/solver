@@ -6,6 +6,13 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
 	default-autowire="byName">
 	
+	<bean id="innerPolygonInitialBoundaryProblemFacade" class="org.solver.facade.facade.DefaultFacade">
+		<property name="inputClass" value="org.solver.input.innerpolygoninitialboundaryproblem.InnerPolygonInitialBoundaryProblemInput" />
+		<property name="problem" ref="innerPolygonInitialBoundaryProblem" />
+		<property name="resultPrint" ref="innerPolygonInitialBoundaryProblemResultPrint" />
+		<property name="resultView" ref="innerPolygonInitialBoundaryProblemResultView" />
+	</bean>
+	
 	<bean id="innerPolygonBoundaryProblemFacade" class="org.solver.facade.facade.DefaultFacade">
 		<property name="inputClass" value="org.solver.input.innerpolygonboundaryproblem.InnerPolygonBoundaryProblemInput" />
 		<property name="problem" ref="innerPolygonBoundaryProblem" />

@@ -15,7 +15,12 @@ public class InnerPolygonBoundaryProblem implements Problem<InnerPolygonBoundary
 	
 	public InnerPolygonBoundaryProblemOutput solve(final InnerPolygonBoundaryProblemInput input) {
 		PolygonTriangulationOutput polygonTriangulationOutput = polygonTriangulation.solve(input);
-		return innerPolygonBoundaryProblemApproximation.solve(input.getA11(), input.getA22(), input.getD(), input.getF(), polygonTriangulationOutput.getPoints(), polygonTriangulationOutput.getBoundariesPoints(), polygonTriangulationOutput.getTriangles(), input.getBoundaries());
+		double fConstant = input.getF();
+		double[] f = new double[polygonTriangulationOutput.getPoints().length];
+		for (int i = 0; i < f.length; ++i) {
+			f[i] = fConstant;
+		}
+		return innerPolygonBoundaryProblemApproximation.solve(input.getA11(), input.getA22(), input.getD(), f, polygonTriangulationOutput.getPoints(), polygonTriangulationOutput.getBoundariesPoints(), polygonTriangulationOutput.getTriangles(), input.getBoundaries());
 	}
 
 	public InnerPolygonBoundaryProblemApproximation getInnerPolygonBoundaryProblemApproximation() {

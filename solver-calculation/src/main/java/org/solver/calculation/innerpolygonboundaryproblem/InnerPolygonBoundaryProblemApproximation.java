@@ -7,6 +7,6 @@ import org.solver.output.innerpolygonboundaryproblem.InnerPolygonBoundaryProblem
 
 public interface InnerPolygonBoundaryProblemApproximation {
 	
-	public InnerPolygonBoundaryProblemOutput solve(final double a11, final double a22, final double d, final double f, final Point2D<Double>[] points, final int[][] boundariesPoints, final Triangle[] triangles, final Boundary[] boundarys);
+	public InnerPolygonBoundaryProblemOutput solve(final double a11, final double a22, final double d, final double[] f, final Point2D<Double>[] points, final int[][] boundariesPoints, final Triangle[] triangles, final Boundary[] boundarys);
 
 }

@@ -11,7 +11,7 @@ public class InnerPolygonBoundaryProblemLinearTriangularApproximation implements
 
 	protected UniversalSlaeSolver universalSlaeSolver;
 	
-	public InnerPolygonBoundaryProblemOutput solve(final double a11, final double a22, final double d, final double f, final Point2D<Double>[] points, final int[][] boundariesPoints, final Triangle[] triangles, final Boundary[] boundarys) {
+	public InnerPolygonBoundaryProblemOutput solve(final double a11, final double a22, final double d, final double[] f, final Point2D<Double>[] points, final int[][] boundariesPoints, final Triangle[] triangles, final Boundary[] boundarys) {
 		double[][] matrix = new double[points.length][];
 		for (int i = 0; i < points.length; ++i) {
 			matrix[i] = new double[points.length];
@@ -67,7 +67,7 @@ public class InnerPolygonBoundaryProblemLinearTriangularApproximation implements
 					meMatrix[k][j] = meMatrix[j][k] = factor;
 				}
 			}
-			double[] qe = multiply(meMatrix, f);
+			double[] qe = multiply(meMatrix, new double[]{f[numberOfPoints[0]], f[numberOfPoints[1]], f[numberOfPoints[2]]});
 			for (int j = 0; j < 3; ++j) {
 				for (int k = 0; k < 3; ++k) {
 					matrix[numberOfPoints[j]][numberOfPoints[k]] += keMatrix[j][k] + d * meMatrix[k][j];
@@ -130,14 +130,14 @@ public class InnerPolygonBoundaryProblemLinearTriangularApproximation implements
 		return new InnerPolygonBoundaryProblemOutput(result, triangles);
 	}
 	
-	public double[] multiply(double[][] matrix,  double f) {
+	public double[] multiply(double[][] matrix,  double[] f) {
 		double[] result = new double[matrix.length];
 		for (int i = 0; i < matrix.length; ++i) {
 			result[i] = 0;
 		}
 		for (int i = 0; i < matrix.length; i++) {
 			for (int k = 0; k < matrix[0].length; k++) {
-				result[i] += matrix[i][k]*f;
+				result[i] += matrix[i][k]*f[k];
 			}
         }
 		return result;

@@ -23,8 +23,9 @@ public class FileModeWindow extends JFrame
 	private static final long serialVersionUID = 1L;
 	
 	protected final ComboBoxItem[] items = new ComboBoxItem[] {
+			new ComboBoxItem("Задача Коші для системи звичайних диференціальних рівнянь 1-го порядку", "ordinaryDifferentialEquationsProblemFacade"),
 			new ComboBoxItem("Внутрішня крайова задача в полігональній області", "innerPolygonBoundaryProblemFacade"),
-			new ComboBoxItem("Задача Коші для системи звичайних диференціальних рівнянь 1-го порядку", "ordinaryDifferentialEquationsProblemFacade")
+			new ComboBoxItem("Внутрішня початково-крайова задача в полігональній області", "innerPolygonInitialBoundaryProblemFacade")
 	};
 	
 	protected ApplicationContext context;
