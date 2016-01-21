@@ -118,6 +118,7 @@
 	</dependencies>
 	
 	<build>
+    	
     	<plugins>
 	      	<plugin>
 	        	<groupId>org.apache.maven.plugins</groupId>
@@ -129,6 +130,16 @@
 	        	</configuration>
 	      	</plugin>
     	</plugins>
+    	
+    	<resources>
+      		<resource>
+        		<directory>${basedir}/src/main/resource</directory>
+        		<includes>
+          			<include>*</include>
+        		</includes>
+      		</resource>
+    	</resources>
+    
 	</build>
 	
 </project>
