@@ -1,5 +1,7 @@
 package org.solver.calculation.innerpolygonboundaryproblem;
 
+import java.util.stream.Stream;
+
 import org.solver.common.boundary.Boundary;
 import org.solver.common.point2d.Point2D;
 import org.solver.common.point3d.Point3D;
@@ -30,7 +32,7 @@ public class InnerPolygonBoundaryProblemLinearTriangularApproximation implements
 			}
 			doubleSquare += trianglePoints[2].getX() * trianglePoints[0].getY() -
 					trianglePoints[0].getX() * trianglePoints[2].getY();
-			double factor = 1 / (2 * doubleSquare);
+			double factor = 1/(2*doubleSquare);
 			double[] a = new double[3];
 			double[] b = new double[3];
 			double[] c = new double[3];
@@ -128,43 +130,51 @@ public class InnerPolygonBoundaryProblemLinearTriangularApproximation implements
 				++numberOfKnownValues;
 			}
 		}
-		double[][] temporaryMatrix = new double[points.length - numberOfKnownValues][];
-		double[] prossesVector = new double[temporaryMatrix.length];
-		int k = 0;
-		for (int i = 0; i < boundaryValues.length; ++i) {
-			if (boundaryValues[i] == null) {
-				temporaryMatrix[k] = matrix[i];
-				prossesVector[k] = vector[i];
-				++k;
-			}
-		}
-		double[][] prossesMatrix = new double[temporaryMatrix.length][];
-		for (int i = 0; i < prossesMatrix.length; ++i) {
-			prossesMatrix[i] = new double[prossesMatrix.length];
-		}
-		k = 0;
-		for (int i = 0; i < boundaryValues.length; ++i) {
-			if (boundaryValues[i] == null) {
-				for (int j = 0; j < prossesMatrix.length; ++j) {
-					prossesMatrix[j][k] = temporaryMatrix[j][i];
-				}
-				++k;
-			} else {
-				for (int j = 0; j < prossesMatrix.length; ++j) {
-					prossesVector[j] -= temporaryMatrix[j][i]*boundaryValues[i];
-				}
-			}
-		}
-		double[] processingZ = universalSlaeSolver.solve(prossesMatrix, prossesVector);
 		double[] z = new double[points.length];
-		k = 0;
-		for (int i = 0; i < boundaryValues.length; ++i) {
-			if (boundaryValues[i] == null) {
-				z[i] = processingZ[k];
-				++k;
+		if (boundaryValues.length != numberOfKnownValues) {
+			if (numberOfKnownValues != 0) {
+				double[][] temporaryMatrix = new double[points.length - numberOfKnownValues][];
+				double[] prossesVector = new double[temporaryMatrix.length];
+				int k = 0;
+				for (int i = 0; i < boundaryValues.length; ++i) {
+					if (boundaryValues[i] == null) {
+						temporaryMatrix[k] = matrix[i];
+						prossesVector[k] = vector[i];
+						++k;
+					}
+				}
+				double[][] prossesMatrix = new double[temporaryMatrix.length][];
+				for (int i = 0; i < prossesMatrix.length; ++i) {
+					prossesMatrix[i] = new double[prossesMatrix.length];
+				}
+				k = 0;
+				for (int i = 0; i < boundaryValues.length; ++i) {
+					if (boundaryValues[i] == null) {
+						for (int j = 0; j < prossesMatrix.length; ++j) {
+							prossesMatrix[j][k] = temporaryMatrix[j][i];
+						}
+						++k;
+					} else {
+						for (int j = 0; j < prossesMatrix.length; ++j) {
+							prossesVector[j] -= temporaryMatrix[j][i]*boundaryValues[i];
+						}
+					}
+				}
+				double[] processingZ = universalSlaeSolver.solve(prossesMatrix, prossesVector);
+				k = 0;
+				for (int i = 0; i < boundaryValues.length; ++i) {
+					if (boundaryValues[i] == null) {
+						z[i] = processingZ[k];
+						++k;
+					} else {
+						z[i] = boundaryValues[i];
+					}
+				}
 			} else {
-				z[i] = boundaryValues[i];
+				z = universalSlaeSolver.solve(matrix, vector);
 			}
+		} else {
+			z = Stream.of(boundaryValues).mapToDouble(i -> i).toArray();
 		}
 		Point3D<Double>[] result = new Point3D[z.length];
 		for (int i = 0; i < z.length; ++i) {
